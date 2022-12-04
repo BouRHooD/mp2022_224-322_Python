@@ -1,0 +1,9 @@
+Shift+Arrows      - Выделение текста (строк)
+Alt+Shift+Up/Down - Копировать код вверх/вниз
+Alt+Up/Down       - Переместить строку или выделенный блок вверх/вниз
+Ctrl+Space        - Показать подсказу быстрых действий по строке, методу 
+
+*Jupyter:
+Ctrl+Alt+Enter    - Запустить ячейку в Jupyter
+Ctrl+Enter        - Запустить ячейку в Jupyter
+Alt+Enter         - Создать ячейку в Jupyter
