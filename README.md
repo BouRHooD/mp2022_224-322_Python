@@ -6,3 +6,4 @@
 - Python (Microsoft)
 - Jupyter (Microsoft)
 - Russian Language Pack for Visual Studio Code (Microsoft)
+- Better Comments (Aeron Bond)
