@@ -1,0 +1,47 @@
+_7_HW - Home Work 7 (https://t.me/+L-i7CVshY6EyOGU6)
+ДЗ от 2022.12.20
+---------------------------------------------------------------------------
+= labSQLite-Join.ipynb
+= labPostgreSQL.ipynb
+= labDownload.ipynb
+= labFuzzyWuzzy.ipynb
+= labFuzzyWuzzy-cities.ipynb
+Подробней тут:
+https://docs.google.com/document/d/1Y3QKmE8LiLbdGLNsCIso7v_Rt3i2kRnUvpPBBuqqHPY
+
+1)
+Внимательно изучить эту картинку про Join (и ее аналоги в интернете)
+https://dsin.files.wordpress.com/2013/03/sqljoins_cheatsheet.png
+Прочитать про Join в SQL
+https://ru.wikipedia.org/wiki/Join_(SQL)
+
+“labSQLite-Join.ipynb”
+# HW:
+- создать БД SQLite с таблицами, как в примерах из википедии
+- построить все виды join запросов  (вспомним про UNION)
+
+2)
+“labPostgreSQL.ipynb”
+Самостоятельно изучать работу Python с PostgreSQL, например с модулем psycopg2.
+# HW:
+- создание БД, запросы в БД, добавление, обновление и тп.
+
+
+3)
+“labDownload.ipynb”
+# HW:
+- скачать другие форматы файлов (например, mp3, doc, ...) разными способами
+- скачать сразу несколько файлов по маске, например, из http://www.futurecrew.com/skaven/song_files/mp3/
+- загрузить файл из интернета с сохранением его метаданных (дата создания, дата открытия, атрибуты и т.п.)
+
+4)
+“labFuzzyWuzzy.ipynb”
+# HW:
+- изучить остальные возможности FuzzyWuzzy из документации
+- создать свои примеры
+
+5)
+“labFuzzyWuzzy-cities.ipynb”
+# HW:
+- показать ТОП-10 городов по нечеткому сравнению в виде таблицы с процентом
+- и т.п.

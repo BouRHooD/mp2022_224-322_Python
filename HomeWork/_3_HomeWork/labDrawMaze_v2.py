@@ -15,6 +15,8 @@ def draw_matrix(matrix):
             print(matrix[row][column], end="")
         print()
 
+block_start = "S "
+block_end   = " F"
 block_wall  = "██"
 block_floor = "  "
 def create_wall(matrix):
@@ -83,24 +85,24 @@ def create_maze_startfinish(matrix):
     if len(matrix) == 0:
         return res
 
-    in_w = len(matrix)
-    in_h = len(matrix[0])
+    in_w = len(matrix) - 1
+    in_h = len(matrix[0]) - 1
 
     # Делаем проходы начала и конца лабиринта
     start_point = start_point_generate(in_w, in_h) 
-    finish_point = finish_point_generate(start_point, in_w, in_h)
+    finish_point = finish_point_generate(start_point, in_w + 1, in_h + 1)
 
     # Ставим проход начала
     _x_start = start_point[0]
     _y_start = start_point[1]
-    res[_x_start][_y_start] = block_floor
+    res[_x_start][_y_start] = block_start
 
     # Ставим проход конца
     _x_finish = finish_point[0]
     _y_finish = finish_point[1]
-    res[_x_finish][_y_finish] = block_floor
+    res[_x_finish][_y_finish] = block_end
     
-    return res, start_point, finish_point
+    return res
 
 def get_neighbours_points(matrix, in_point, distance, UNVISITED_CELLS):
     res = matrix
@@ -143,13 +145,13 @@ def remove_wall(first_cell, second_cell, matrix, UNVISITED_CELLS):
     y_diff = second_cell[1] - first_cell[1]
     addX = x_diff / abs(x_diff) if x_diff != 0 else 0
     addY = y_diff / abs(y_diff) if y_diff != 0 else 0
-    target = [first_cell[0] + addX, first_cell[1] + addY]
+    target = [int(first_cell[0] + addX), int(first_cell[1] + addY)]
 
     if UNVISITED_CELLS.count(target) > 0:
         UNVISITED_CELLS.remove(target)
 
     matrix[target[0]][target[1]] = block_floor
-    return matrix
+    return matrix, UNVISITED_CELLS
 
 def create_clear_map(in_w: 0, in_h: 0):
     # Создаем матрицу HxW
@@ -161,33 +163,44 @@ def create_clear_map(in_w: 0, in_h: 0):
     # Делаем стены лабиринта (сырой вариант)
     maze_matrix, UNVISITED_CELLS = create_maze_wall(wall_matrix)
 
-    # Делаем прохода начала и конца
-    # maze_startfinish, start_point, finish_point = create_maze_startfinish(maze_matrix)
-
     # Генерируем лабиринт
-    current_point = [1, 1]
-    neighbour_point = None
+    start_cell = [1, 1]
+    current_cell = start_cell
     
-    # Если у клетки есть непосещенные соседи
-    stack_points = []
-    neighbours_points = get_neighbours_points(maze_matrix, current_point, 2, UNVISITED_CELLS)
-    if len(neighbours_points) != 0:
-        import random
-        randNum = random.randint(0, len(neighbours_points) - 1)
-        neighbourCell = neighbours_points[randNum]; # Выбираем случайного соседа
-        stack_points.append(current_point)          # Заносим текущую точку в стек
-        # Убираем стену между текущей и сосендней точками
-        maze_matrix, UNVISITED_CELLS = remove_wall(maze_matrix)  
-        # Делаем соседнюю точку текущей и отмечаем ее посещенной
-        current_point = neighbourCell
-        if UNVISITED_CELLS.count(current_point) > 0:
-            UNVISITED_CELLS.remove(current_point)
-    elif len(neighbours_points) == 0:
-        pass
-    else:
-        pass
+    # Пока у лабиринта есть непосещенные клетки, выполняем генерацию лабиринта
+    stack_points = [] # Список с посещенными вершинами, чтобы можно было вернуться обратно и посетить непосещенных соседей
+    while len(UNVISITED_CELLS) > 0:
+        # Получаем непосещенных соседей клетки
+        neighbours_points = get_neighbours_points(maze_matrix, current_cell, 2, UNVISITED_CELLS)
+        # Если у клетки есть непосещенные соседи
+        if len(neighbours_points) != 0:
+            import random
+            randNum = random.randint(0, len(neighbours_points) - 1)
+            neighbourCell = neighbours_points[randNum]; # Выбираем случайного соседа
+            stack_points.append(current_cell)           # Заносим текущую точку в стек
+            # Убираем стену между текущей и сосендней точками
+            maze_matrix, UNVISITED_CELLS = remove_wall(current_cell, neighbourCell, maze_matrix, UNVISITED_CELLS)  
+            # Делаем соседнюю точку текущей и отмечаем ее посещенной
+            current_cell = neighbourCell
+            if UNVISITED_CELLS.count(current_cell) > 0:
+                UNVISITED_CELLS.remove(current_cell)
+        # Если нет соседей, но список посещенных клеток НЕ пуст, то возвращаемся на предыдущую точку
+        elif len(neighbours_points) == 0 and len(stack_points) > 0:
+            current_cell = stack_points.pop()
+        # Если нет соседей и точек в стеке, но не все точки посещены, выбираем случайную из непосещенных
+        else:
+            import random
+            randNum = random.randint(0, len(UNVISITED_CELLS) - 1)
+            current_cell = UNVISITED_CELLS[randNum]
+            pass
+        
+        # Проверяем как рисует каждый шаг
+        # draw_matrix(maze_matrix)
 
-    return maze_matrix
+    # Делаем прохода начала и конца
+    maze_startfinish = create_maze_startfinish(maze_matrix)
+
+    return maze_startfinish
 
 def start_point_generate(n, m):
     """Функция выбора точки начала лабиринта"""
