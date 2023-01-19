@@ -7,7 +7,7 @@ _8_HW - Home Work 8 (https://t.me/+L-i7CVshY6EyOGU6)
 Подробней тут:
 https://docs.google.com/document/d/1iRzcCD7oikmz_vvmE5i7BYDSuWv5Z8oIf4pYdHixvDY
 
-2)
+1)
 “labItertools.ipynb”
 # HW:
 - внимательно прочитать документацию по itertools
@@ -19,7 +19,7 @@ https://docs.google.com/document/d/1iRzcCD7oikmz_vvmE5i7BYDSuWv5Z8oIf4pYdHixvDY
 - почитать документацию про NumPy и создать примеры тех функций которые мы не успели рассмотреть на занятиях
 - придумать свои примеры
 
-1)
+3)
 “labPandas.ipynb”
 # HW:
 - почитать документацию про Pandas и создать примеры тех функций которые мы не успели рассмотреть на занятиях
