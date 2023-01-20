@@ -8,3 +8,5 @@
 - Russian Language Pack for Visual Studio Code (Microsoft)
 - Better Comments (Aeron Bond)
 - Rainbow CSV (mechatroner)
+
+Для установки необходимых библиотек, используйте команду в терминале: python -m pip install -r requirements.txt (или pip install -r requirements)
