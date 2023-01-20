@@ -17,7 +17,7 @@ def delete_old_and_create_new_db(in_path_to_dir_db: str, max_files_db: int, def_
                 if ".db" in name:
                     paths_to_db.append(os.path.join(root, name))
         
-        # Удаляем лишние файлы БД
+        # Удаляем лишние файлы БД (оставляет поздние файлы)
         if (len(paths_to_db) >= max_files_db):
             for file_db in paths_to_db:
                 if len(paths_to_db) <= max_files_db:
@@ -34,10 +34,11 @@ def delete_old_and_create_new_db(in_path_to_dir_db: str, max_files_db: int, def_
         "(id integer primary key,"
         "url_name varchar(1000),"
         "file_path varchar(1000),"
-        "response_status varchar(100),"
+        "response_status varchar(1000),"
+        "process_time REAL,"
         "screenshot BLOB)")
 
-        print(f"💌 Создана БД и подключена к приложению")
+        print(f"💌 Создана БД и БД подключена к приложению")
         return db_conn, db_cur
 
 
