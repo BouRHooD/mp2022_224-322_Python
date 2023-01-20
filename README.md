@@ -1,5 +1,4 @@
 # Леонов Владислав Денисович 224-322    
-# (время создания проекта ≈ 12 часов (5+7))   
 
 Эмодзи для красивых commits - https://gist.github.com/rxaviers/7360908
 
@@ -14,3 +13,5 @@
 
 Для работы с базой данных sqlite удобно использовать приложение [DB Browser for SQLite](https://sqlitebrowser.org/dl/)      
 Для установки необходимых библиотек, используйте команду в терминале: python -m pip install -r requirements.txt (или pip install -r requirements)     
+
+# (время создания проекта ≈ 12 часов (5+7))   
